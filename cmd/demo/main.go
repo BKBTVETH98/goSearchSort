@@ -6,6 +6,8 @@ import (
 	"sortsearch/pkg/benchmark"
 	"sortsearch/pkg/searching"
 	"sortsearch/pkg/sorting"
+
+	"github.com/fatih/color"
 )
 
 const arrSize = 100000
@@ -22,8 +24,8 @@ func main() {
 		dataSort[i] = i
 	}
 
-	fmt.Println("Demo библиотеки sortsearch")
-	fmt.Println("Размер массива:", len(data))
+	color.Yellow("Demo библиотеки sortsearch")
+	color.Green("Размер массива: %d", arrSize)
 
 	sorters := []sorting.Sorter{
 		sorting.BubbleSorter{},
@@ -41,10 +43,10 @@ func main() {
 		searching.BinarySearcher{},
 	}
 
-	fmt.Println("\nПоиск элемента", 9999, "в отсортированном массиве")
+	color.Green("\nПоиск элемента  9999, в отсортированном массиве")
 
 	for _, alg := range searchers { // Ищем элемент 9999 в отсортированном массиве
-		result := benchmark.MeasureSearch(alg, dataSort, 9999)
+		result := benchmark.MeasureSearch(alg, dataSort, 99999)
 		if result.Error != nil {
 			fmt.Printf("%s: ошибка=%v\n", alg.Name(), result.Error)
 			continue

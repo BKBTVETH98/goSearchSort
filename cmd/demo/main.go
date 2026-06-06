@@ -35,7 +35,7 @@ func main() {
 
 	for _, alg := range sorters {
 		result := benchmark.MeasureSort(alg, data)
-		fmt.Printf("%s: время=%d ns\n", alg.Name(), result.Duration.Nanoseconds())
+		fmt.Printf("%s: время=%d ns (Секунды - %.9f) \n", alg.Name(), result.Duration.Nanoseconds(), result.Duration.Seconds())
 	}
 
 	searchers := []searching.Searcher{
@@ -51,7 +51,6 @@ func main() {
 			fmt.Printf("%s: ошибка=%v\n", alg.Name(), result.Error)
 			continue
 		}
-		fmt.Printf("%s: индекс=%d время=%d ns\n", alg.Name(), result.Index, result.Duration.Nanoseconds())
+		fmt.Printf("%s: индекс=%d время=%d ns (Секунды - %.9f)\n", alg.Name(), result.Index, result.Duration.Nanoseconds(), result.Duration.Seconds())
 	}
-
 }
